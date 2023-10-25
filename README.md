@@ -91,14 +91,38 @@ iOS개발자들에게 필요한 자료들을 정리하고 있는 중입니다.
 
 - App Bundle의 구조와 역할에 대해 설명하시오.
 
+  >
+
 - 모든 View Controller 객체의 상위 클래스는 무엇이고 그 역할은 무엇인가?
+
+  > 모든 ViewController의 상위 클래스는 UIViewController입니다. UIViewController는 View 업데이트, 이벤트 처리, 화면 전환 등의 역할을 수행합니다.
+
 - 자신만의 Custom View를 만들려면 어떻게 해야하는지 설명하시오.
+
+  > UIView를 상속받는 클래스를 만들고, 코드로만 UI를 구성하거나 Storyboard를 연결해서 커스텀 뷰를 만들 수 있습니다.
+
 - View 객체에 대해 설명하시오.
+
+  > View는 화면에 content를 표시하고, 오토레이아웃, 제스쳐 등 화면에 관련한 것들을 담당하는 객체입니다.
+
 - UIView 에서 Layer 객체는 무엇이고 어떤 역할을 담당하는지 설명하시오.
+
+  > View가 생성될 때, 그에 대응하는 layer가 생성됩니다. 이 때, layer의 타입은 layerClass에 의해서 결정되고, default는 CALayer입니다. CALayer는 CoreAnimation 프레임워크의 핵심 기능을 제공하는 클래스이며, 그래픽 콘텐츠를 관리하고, 애니메이션을 처리하는데 사용됩니다. CoreAnaimation 프레임워크를 사용하기 때문에 GPU를 사용해 렌더링을 가속화하고, 부드러운 애니메이션을 적용할 수 있습니다.
+
 - iOS에서 뷰(View)와 레이어(Layer)의 개념과 차이점에 대해 설명해보세요.
+
+  > View는 화면의 콘텐츠를 관리하는 객체이고, Layer는 렌더링에 사용되는 뷰의 핵심 애니메이션 객체입니다. View는 콘텐츠의 위치와 크기를 정의하며, 사용자 이벤트를 처리할 수 있습니다. 반면에, Layer는 View의 모서리, 그림자, 애니메이션과 같은 View의 시각적 요소를 변경하는데 사용됩니다.
+
 - UIWindow 객체의 역할은 무엇인가?
+
+  > UIWindow는 UIView의 하위 클래스로 앱의 UI를 담는 컨테이너이자, 뷰에 이벤트를 전달하는 객체입니다. 윈도우는 ViewController와 함께 작동하여 이벤트를 처리하고, 앱 작동의 기본이 되는 다른 많은 작업을 수행합니다.
+
 - UINavigationController 의 역할이 무엇인지 설명하시오.
+
+  > UINavigationController는 ViewController들을 네비게이션 스택을 통해 계층적으로 관리하며, 앱 내부의 화면 전환과 관련된 작업을 처리합니다.
+
 - TableView를 동작 방식과 화면에 Cell을 출력하기 위해 최소한 구현해야 하는 DataSource 메서드를 설명하시오.
+
 - 하나의 View Controller 코드에서 여러 TableView Controller 역할을 해야 할 경우 어떻게 구분해서 구현해야 하는지 설명하시오.
 - setNeedsLayout와 setNeedsDisplay의 차이에 대해 설명하시오.
 - stackView의 장점과 단점에 대해서 설명하시오.
