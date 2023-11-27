@@ -30,12 +30,12 @@ iOS개발자들에게 필요한 자료들을 정리하고 있는 중입니다.
 
 ## 실제 디바이스가 없을 경우 개발 환경에서 할 수 있는 것과 없는 것을 설명하시오.
 
-> 실제 디바이스가 없을 경우에는 시뮬레이터를 사용해서 앱을 실제 기기에서 테스트하기 전에 빠르게 프로토 타이핑 및 개발을 할 수 있습니다. UI가 화면상에 어떻게 보이는지 확인할 수 있고, 네트워크 통신과 같은 동작들을 디버깅해볼 수 있습니다. 하지만, 시뮬레이터를 사용하면 실제 디바이스 환경이 아닌 Mac 환경에서 실행되는 것이기 때문에 CPU, 메모리 같은 리소스는 컴퓨터의 리소스이기 때문에 정확한 앱의 성능이나 메모리 사용량, 네트워크 속도를 가늠할 수 없습니다.
+> 실제 디바이스가 없을 경우에는 시뮬레이터를 사용해서 앱을 실제 기기에서 테스트하기 전에 빠르게 프로토 타이핑 및 개발을 할 수 있습니다. UI가 화면상에 어떻게 보이는지 확인할 수 있고, 네트워크 통신과 같은 동작들을 디버깅해볼 수 있습니다. 하지만, 시뮬레이터를 사용하면 실제 디바이스 환경이 아닌 Mac 환경에서 실행되는 것이기 때문에 CPU, 메모리 같은 리소스는 컴퓨터의 리소스입니다. 따라서 정확한 앱의 성능이나 메모리 사용량, 네트워크 속도를 가늠할 수 없습니다. 또한, 카메라, 마이크, 센서등을 사용할 수 없습니다.
 
 ## 앱의 콘텐츠나 데이터 자체를 저장/보관하는 특별한 객체를 무엇이라고 하는가?
 
-> `DataBase` 라고 생각합니다. iOS에서는 앱의 데이터를 저장하기 위해 UserDefaults, CoreData, SQLite, Realm 등을 사용할 수 있습니다. 저는 이 중에서 UserDefaults와 CoreData를 사용해봤습니다. UserDefaults는 데이터를 Key - Value 쌍으로 저장하는데, 사용자 기본 설정과 같은 단일 데이터 저장에 적합합니다.
-> CoreData는 복잡한 데이터 모델 및 관계를 쉽게 작성할 수 있도록 도와주고, 영구적인 데이터 저장을 제공합니다.
+> `DataBase` 라고 생각합니다. iOS에서는 앱의 데이터를 저장하기 위해 `UserDefaults, CoreData, SQLite, Realm` 등을 사용할 수 있습니다. 저는 이 중에서 UserDefaults와 CoreData를 사용해봤습니다. UserDefaults는 데이터를 `Key - Value` 쌍으로 저장하는데, 사용자 기본 설정과 같은 `단일 데이터 저장`에 적합합니다.
+> `CoreData`는 복잡한 데이터 모델 및 관계를 쉽게 작성할 수 있도록 도와주고, `영구적인 데이터 저장`을 제공합니다.
 
 ## App thinning에 대해서 설명하시오.
 
@@ -43,23 +43,39 @@ iOS개발자들에게 필요한 자료들을 정리하고 있는 중입니다.
 
 ## 슬라이싱, 주문형 리소스, 비트코드가 무엇인가요?
 
-> 슬라이싱은 앱을 구성하는 여러 버전의 실행 가능한 소스 코드와 리소스들 중 앱을 설치할 `디바이스의 특성에 맞는` 버전들만 골라서 설치하는 것을 의미합니다.
-> 주문형 리소스는 앱을 설치할 때, 모든 리소스를 다운로드 받지 않고, 일부는 앱스토어에 저장해두었다가 나중에 필요할 때, 다운로드하는 방식입니다.
-> 비트코드는 앱을 업로드할 때, 기계어로 구성된 바이너리 파일이 아니라 그 전 단계인 비트코드로 업로드하는 것을 의미합니다.
+> 슬라이싱은 `앱을 구성하는 여러 버전의 실행 가능한 소스 코드와 리소스들 중` 앱을 설치할 `디바이스의 특성에 맞는` 버전들만 골라서 설치하는 것을 의미합니다.
+> 주문형 리소스는 앱을 설치할 때, 모든 리소스를 다운로드 받지 않고, 일부는 앱스토어에 저장해두었다가 `나중에 필요할 때, 다운로드`하는 방식입니다.
+> 비트코드는 앱을 업로드할 때, `기계어로 구성된 바이너리 파일이 아니라` 그 전 단계인 `비트코드로 업로드`하는 것을 의미합니다.
 
 ###
 
 ## 앱이 시작할 때 main.c 에 있는 UIApplicationMain 함수에 의해서 생성되는 객체는 무엇인가?
 
-> `UIApplication` 인스턴스(객체)가 생성됩니다. UIApplication은 iOS에서 실행되는 앱들의 관리와 `협력의 중심점` 역할을 합니다. 해당 객체가 생성되고 나서야 개발자가 작성한 코드대로 이벤트 처리 등의 동작을 제어할 수 있습니다.
+> `UIApplication` 인스턴스(객체)가 생성됩니다. 또한, AppDelegate와 SceneDelegate 객체도 생성합니다. 마지막으로 앱의 루트가 되는 window 객체를 생성하고, 루트 뷰 컨트롤러를 할당합니다.
 
-## @Main에 대해서 설명하시오.
+## UIApplication 객체는 어떤 일을 하나요?
+> UIApplication은 `UIApplicationMain`에서 만들어지는 `싱글톤 객체`입니다. UIApplication은 최초에 `런루프`를 만들고 AppDelegate에게 delegate를 위임합니다.
+
+## AppDelegate는 무슨 일을 하나요?
+> AppDelegate는 `UIApplicationDelegate` 프로토콜을 채택하여 앱의 생명주기가 변화할 때 특정한 작업을 수행할 수 있습니다.
+
+## UIApplicationDelegate는 어떤 종류의 메서드들을 포함하고 있나요?
+> 앱의 `생명주기`에 대응되는 메서드들을 가지고 있습니다.
+
+## 앱 생명주기와 관련된 UIApplicationDelegate 메서드들을 자세히 말해보세요.
+- `applicationDidBecomeAcive`: Active 상태가 되면, 호출됩니다.
+- `applicationWillResignActive`: In-active 상태로 전환되기 직전에 호출됩니다.
+- `applicationDidEnterBackgound`: Background 상태로 들어가면 호출됩니다.
+- `applicationWillEnterForeground`: Foreground 상태로 전환되기 직전에 호출됩니다.
+- `applicationWillTerminate`: 앱이 종료되기 직전에 호출됩니다.
+
+## @main에 대해서 설명하시오.
 
 > 앱의 `Entry Point`(진입 지점)를 지정하기 위한 Swift의 기능입니다.
 
 ## 앱이 In-Active 상태가 되는 시나리오를 설명하시오.
 
-> 앱이 실행 중일 때, 멀티 태스킹 윈도우로 진입하거나 전화, 알림 등에 의해 앱이 일시 중단되는 경우 In-Active 상태로 진입합니다.
+> 앱이 실행 중일 때, 멀티 태스킹 윈도우로 진입하거나 전화, 알림 등에 의해 앱이 `일시 중단되는 경우` In-Active 상태로 진입합니다.
 
 ## scene delegate에 대해 설명하시오.
 
@@ -67,7 +83,7 @@ iOS개발자들에게 필요한 자료들을 정리하고 있는 중입니다.
 
 ## App의 Not running, Inactive, Active, Background, Suspended에 대해 설명하시오.
 
-> Not running은 실행 중이지 않은 상태, Inactive는 실행 중이지만, 이벤트를 받지 못하는 상태, Active는 실행 중이면서 이벤트를 받을 수 있는 상태, Background는 백그라운드에서 코드를 실행 중인 상태, Suspended는 백그라운드에서 코드를 실행하지 않는 상태를 의미합니다.
+> `Not running`은 실행 중이지 않은 상태, `Inactive`는 실행 중이지만, 이벤트를 받지 못하는 상태, `Active`는 실행 중이면서 이벤트를 받을 수 있는 상태, `Background`는 백그라운드에서 코드를 실행 중인 상태, `Suspended`는 백그라운드에서 코드를 실행하지 않는 상태를 의미합니다.
 
 ###
 
@@ -81,98 +97,106 @@ iOS개발자들에게 필요한 자료들을 정리하고 있는 중입니다.
 
 ## Delegate란 무엇인지 설명하고, retain 되는지 안되는지 그 이유를 함께 설명하시오.
 
-> Delegate는 iOS 개발에서 자주 사용하는 `디자인 패턴`으로, 한 객체가 다른 객체에게 특정 작업을 `위임`할 때 사용합니다. 서로 다른 객체가 서로를 참조하기 때문에 `강하게 참조하는 경우 retain됩니다.` 만약 서로를 강하게 참조하는 경우 `Retain Cycle`이 발생하기 때문에 일반적으로는 delegate 프로퍼티를 약한 참조로 선언해 Retain Cycle 문제를 예방할 수 있습니다.
+> Delegate는 iOS 개발에서 자주 사용하는 `디자인 패턴`으로, 한 객체가 다른 객체에게 특정 작업을 `위임`할 때 사용합니다. 서로 다른 객체가 서로를 참조하기 때문에 `강하게 참조하는 경우 retain됩니다.` 만약 서로를 강하게 참조하는 경우 `Retain Cycle`이 발생하기 때문에 일반적으로는 delegate 프로퍼티를 약한 참조로 선언해 Retain Cycle 문제를 예방합니다.
 
 ## NotificationCenter 동작 방식과 활용 방안에 대해 설명하시오.
 
-> 특정 객체가 NotificationCenter에 이벤트를 발송하고, 해당 이벤트를 구독하고 있는 Observer들은 이벤트를 전달 받아 특정한 작업을 수행할 수 있습니다. 활용 방안으로 키보드가 올라오거나 내려갈 때, View를 재배치하기 위해서 키보드의 상태를 구독할 때, NotificationCenter를 활용할 수 있습니다.
+> 특정 객체가 NotificationCenter에 `이벤트를 발송`하고, 해당 이벤트를 구독하고 있는 `Observer`들은 이벤트를 전달 받아 특정한 작업을 수행할 수 있습니다. 활용 방안으로 키보드가 올라오거나 내려갈 때를 알기위해 NotificationCenter를 활용할 수 있습니다.
 
 ## UIKit 클래스들을 다룰 때 꼭 처리해야하는 애플리케이션 쓰레드 이름은 무엇인가?
 
-> Main Thread 입니다. UI 작업은 모두 메인 스레드에서 이루어져야 합니다.
+> `Main Thread` 입니다. UI 작업은 모두 메인 스레드에서 이루어져야 합니다.
 
 ## App Bundle의 구조와 역할에 대해 설명하시오.
 
-> App Bundle은 실행파일과 실행에 필요한 리소스 및 데이터 파일을 하나로 묶어서 구성되어 있습니다. iOS 앱을 실행할 때, 필요한 파일들을 로드하기 위해 번들을 통해 로드하게 됩니다.
+> App Bundle은 `실행파일과 실행에 필요한 리소스 및 데이터 파일`을 하나로 묶어서 구성되어 있습니다. iOS 앱을 실행할 때, 필요한 파일들을 로드하기 위해 번들을 통해 로드하게 됩니다.
 
 ## 모든 View Controller 객체의 상위 클래스는 무엇이고 그 역할은 무엇인가?
 
-> 모든 ViewController의 상위 클래스는 UIViewController입니다. UIViewController는 View 업데이트, 이벤트 처리, 화면 전환 등의 역할을 수행합니다.
+> 모든 ViewController의 상위 클래스는 `UIViewController`입니다. UIViewController는 `View 업데이트, 이벤트 처리, 화면 전환` 등의 역할을 수행합니다.
 
 ## 자신만의 Custom View를 만들려면 어떻게 해야하는지 설명하시오.
 
-> UIView를 상속받는 클래스를 만들고, 코드로만 UI를 구성하거나 Storyboard를 연결해서 커스텀 뷰를 만들 수 있습니다.
+> `UIView를 상속받는 클래스`를 만들고, 코드로만 UI를 구성하거나 Storyboard를 연결해서 커스텀 뷰를 만들 수 있습니다.
 
 ## View 객체에 대해 설명하시오.
 
-> View는 화면에 content를 표시하고, 오토레이아웃, 제스쳐 등 화면에 관련한 것들을 담당하는 객체입니다.
+> View는 화면에 `content를 표시`하고, 오토레이아웃, 제스쳐 등 화면에 관련한 것들을 담당하는 객체입니다.
 
 ## UIView 에서 Layer 객체는 무엇이고 어떤 역할을 담당하는지 설명하시오.
 
-> View가 생성될 때, 그에 대응하는 layer가 생성됩니다. 이 때, layer의 타입은 CALayer입니다. CALayer는 CoreAnimation 프레임워크의 핵심 기능을 제공하는 클래스이며, 그래픽 콘텐츠를 관리하고, 애니메이션을 처리하는데 사용됩니다. CoreAnaimation 프레임워크를 사용하기 때문에 GPU를 사용해 렌더링을 가속화하고, 부드러운 애니메이션을 적용할 수 있습니다.
+> `View가 생성될 때, 그에 대응하는 layer가 생성`됩니다. 이 때, layer의 타입은 `CALayer`입니다. CALayer는 `CoreAnimation 프레임워크`의 핵심 기능을 제공하는 클래스이며, `그래픽 콘텐츠`를 관리하고, `애니메이션`을 처리하는데 사용됩니다. CoreAnaimation 프레임워크를 사용하기 때문에 GPU를 사용해 렌더링을 가속화하고, 부드러운 애니메이션을 적용할 수 있습니다.
 
 ## iOS에서 뷰(View)와 레이어(Layer)의 개념과 차이점에 대해 설명해보세요.
 
-> View는 화면의 콘텐츠를 관리하는 객체이고, Layer는 렌더링에 사용되는 뷰의 핵심 애니메이션 객체입니다. View는 콘텐츠의 위치와 크기를 정의하며, 사용자 이벤트를 처리할 수 있습니다. 반면에, Layer는 View의 모서리, 그림자, 애니메이션과 같은 View의 시각적 요소를 변경하는데 사용됩니다.
+> View는 `화면의 콘텐츠를 관리하는 객체`로써 콘텐츠의 위치와 크기를 정의하고, 사용자 이벤트를 처리할 수 있습니다. 반면에 Layer는 렌더링에 사용되는 `뷰의 핵심 애니메이션 객체`로써 View의 모서리, 그림자, 애니메이션과 같은 View의 시각적 요소를 변경하는데 사용됩니다.
 
 ## UIWindow 객체의 역할은 무엇인가?
 
-> UIWindow는 UIView의 하위 클래스로 앱의 UI를 담는 컨테이너이자, 뷰에 이벤트를 전달하는 객체입니다. 윈도우는 ViewController와 함께 작동하여 이벤트를 처리하고, 앱 작동의 기본이 되는 다른 많은 작업을 수행합니다.
+> UIWindow는 앱의 UI를 담는 `컨테이너`이자, `뷰에 이벤트를 전달`하는 객체입니다.
 
 ## UINavigationController 의 역할이 무엇인지 설명하시오.
 
-> UINavigationController는 ViewController들을 네비게이션 스택을 통해 계층적으로 관리하며, 앱 내부의 화면 전환과 관련된 작업을 처리합니다.
+> UINavigationController는 ViewController들을 `네비게이션 스택`을 통해 `계층적으로` 관리하며, 앱 내부의 `화면 전환`과 관련된 작업을 처리합니다.
 
 ## TableView의 동작 방식과 화면에 Cell을 출력하기 위해 최소한 구현해야 하는 DataSource 메서드를 설명하시오.
 
-> TableView는 DataSource 프로토콜을 채택하여 셀을 표시하기 위한 데이터를 전달받고, 화면에 표시될 각 셀을 생성하거나, 재사용 큐로부터 셀을 재활용합니다. 최소한으로 구현해야 하는 DataSource 메서드는 특정 위치에 삽일할 셀을 반환하는 cellForRowAt이 있고, 지정된 섹션에 있는 행의 수를 반환하는 numberOfRowInSection이 있습니다.
+> TableView는 DataSource 프로토콜을 채택하여 셀을 표시하기 위한 데이터를 전달받고, 화면에 표시될 각 셀을 생성하거나, `재사용 큐`로부터 셀을 재활용합니다. 최소한으로 구현해야 하는 DataSource 메서드는 특정 위치에 삽일할 셀을 반환하는 `cellForRowAt`이 있고, 지정된 섹션에 있는 행의 수를 반환하는 `numberOfRowInSection`이 있습니다.
 
 ## 하나의 View Controller 코드에서 여러 TableView의 Controller 역할을 해야 할 경우 어떻게 구분해서 구현해야 하는지 설명하시오.
 
-> TableView의 DataSource 또는 Delegate 메소드를 구현할 때, TableView의 프로퍼티 이름으로 구분해서 TableView마다 서로 다른 동작을 구현할 수 있습니다.
+> TableView의 DataSource 또는 Delegate 메소드를 구현할 때, TableView의 `프로퍼티 이름`으로 구분해서 TableView마다 서로 다른 동작을 구현할 수 있습니다.
 
 ## setNeedsLayout와 setNeedsDisplay의 차이에 대해 설명하시오.
 
-> setNeedsLayout은 뷰의 위치와 크기를 업데이트하는 layoutSubviews를 다음 업데이트 사이클에 호출하도록 예약하는 메서드이고, setNeedsDisplay는 뷰의 내용을 그리는 draw 메서드를 다음 업데이트 사이클에 호출하도록 예약하는 메서드입니다.
+> setNeedsLayout은 뷰의 위치와 크기를 업데이트하는 `layoutSubviews`를 다음 업데이트 사이클에 호출하도록 예약하는 메서드이고, setNeedsDisplay는 뷰의 내용을 그리는 `draw` 메서드를 다음 업데이트 사이클에 호출하도록 예약하는 메서드입니다.
 
 ## stackView의 장점과 단점에 대해서 설명하시오.
 
-> 가로 또는 세로로 뷰를 선형으로 배치하는 경우 stackView를 사용하면 보다 더 편리하게 뷰를 배치할 수 있다는 장점이 있습니다. 하지만, 단순 선형 레이아웃이 아닌 복잡한 레이아웃은 stackView가 제한적일 수 있습니다.
+> 가로 또는 세로로 뷰를 `선형으로` 배치하는 경우 stackView를 사용하면 보다 더 편리하게 뷰를 배치할 수 있다는 장점이 있습니다. 하지만, 단순 선형 레이아웃이 아닌 복잡한 레이아웃은 stackView가 제한적일 수 있습니다.
 
 ###
 
 ## URLSession에 대해서 설명하시오.
 
-> URLSession은 앱에서 서버와 통신을 통해 데이터를 주고 받을 수 있도록 API를 제공하는 클래스입니다.
+> URLSession은 앱에서 서버와 `통신`을 통해 데이터를 주고 받을 수 있도록 API를 제공하는 클래스입니다.
 
 ## prepareForReuse에 대해서 설명하시오.
 
-> prepareForReuse는 테이블 뷰나 컬렉션 뷰에서 셀을 재사용할 때 호출되는 메서드입니다. 이 메서드의 목적은 셀을 재사용하기 전에 셀의 속성을 초기화하기 위해서 사용합니다.
+> prepareForReuse는 테이블 뷰나 컬렉션 뷰에서 `셀을 재사용할 때 `호출되는 메서드입니다. 이 메서드의 목적은 셀을 재사용하기 전에 셀의 속성을 `초기화`하기 위해서 사용합니다.
 
 ## 다크모드를 지원하는 방법에 대해 설명하시오.
 
-> 다크모드를 지원하기 위해서는 라이트 모드와 다크 모드 각각에 대응하는 Color Asset과 Image Asset을 등록해서 대응할 수 있습니다.
+> 다크모드를 지원하기 위해서는 라이트 모드와 다크 모드 각각에 대응하는 `Color Asset과 Image Asset`을 등록해서 대응할 수 있습니다.
 
 ## ViewController의 생명주기를 설명하시오.
 
 > loadView, viewDidLoad, viewWillAppear, viewDidAppear, viewWillDisappear, viewDidDisappear 가 있습니다.
-> loadView는 View를 메모리에 로드합니다. viewDidLoad는 View가 메모리에 로드된 후 호출됩니다. viewWillAppear는 View가 화면에 나타나기 전에 호출됩니다. viewDidAppear는 View가 화면에 나타난 후 호출됩니다. viewWillDisappear는 View가 사라지기 전에 호출됩니다. viewDidDisappear는 View가 사라진 후 호출됩니다.
+
+- `loadView`: View를 메모리에 로드합니다.
+- `viewDidLoad`: View가 메모리에 로드된 후 호출됩니다.
+- `viewWillAppear`: View가 화면에 나타나기 전에 호출됩니다.
+- `viewDidAppear`: View가 화면에 나타난 후 호출됩니다.
+- `viewWillDisappear`: View가 사라지기 전에 호출됩니다.
+- `viewDidDisappear`: View가 사라진 후 호출됩니다.
 
 ## TableView와 CollectionView의 차이점을 설명하시오.
 
-> 테이블 뷰는 단일 열의 여러 행으로 Cell이 나열된 형태인 반면에 컬렉션 뷰는 다양한 행렬의 형태로 표현할 수 있습니다. 또한 테이블 뷰는 기본 Cell의 스타일을 제공하지만, 컬렉션 뷰는 제공하지 않습니다.
+> 테이블 뷰는 `단일 열의 여러 행`으로 Cell이 나열된 형태인 반면에 컬렉션 뷰는 `다양한 행렬의 형태`로 표현할 수 있습니다.
+> 
+>  또한 테이블 뷰는 기본 Cell의 스타일을 제공하지만, 컬렉션 뷰는 제공하지 않습니다.
 
 ## UIControl에 대해서 설명해주세요.
 
-> UIControl은 UIView를 상속받는 객체로 사용자 상호작용에 대한 기능을 제공합니다. UIControl은 상태 정보를 제공하고, addTarget으로 UIControl 객체에서 어떤 이벤트가 발생했을 때, 처리할 메소드를 지정할 수 있습니다.
+> UIControl은 UIView를 상속받는 객체로 `사용자 상호작용`에 대한 기능을 제공합니다. UIControl은 `addTarget`으로 객체에서 어떤 이벤트가 발생했을 때, 처리할 메소드를 지정할 수 있습니다.
 
 ## CollectionViewLayout을 커스텀하게 정의할 때, prepare 메서드가 언제 불리고 어떤 역할을 하는지
 
-> 컬렉션 뷰가 컨텐츠를 처음 표시하거나 뷰가 변경되어서 레이아웃이 무효화되면, 호출됩니다. prepare 메서드가 호출되면, 레이아웃 객체에게 레이아웃을 업데이트 하도록 시키게 됩니다. 레이아웃이 업데이트 되기 시작하면 컬렉션 뷰가 이 메서드를 호출해서 정의한 레이아웃 객체가 레이아웃을 잡을 수 있게합니다.
+> prepare 메서드는 컬렉션 뷰가 컨텐츠를 처음 표시하거나 `뷰가 변경되어서 레이아웃이 무효화되면`, 호출됩니다. prepare 메서드가 호출되면, 레이아웃 객체에게 `레이아웃을 업데이트` 하도록 시키게 됩니다. 레이아웃이 업데이트 되기 시작하면 컬렉션 뷰가 이 메서드를 호출해서 정의한 레이아웃 객체가 레이아웃을 잡을 수 있게합니다.
 
 ## #selector의 역할이 무엇인지
 
-> Objective-C 런타임으로 실행되는 메서드를 지정하기 위해서 사용합니다.
+> `Objective-C 런타임`으로 실행되는 메서드를 지정하기 위해서 사용합니다.
 
 ## super.viewDidLoad()를 제거하면 어떤 일이 일어나는지?
 
@@ -180,52 +204,52 @@ iOS개발자들에게 필요한 자료들을 정리하고 있는 중입니다.
 
 ## UIResponder에 대해 설명해주세요.
 
-> UIResponder는 모든 UIView의 상위 객체이면서 이벤트를 받고 처리하거나 다른 UIResponder 객체에게 전달하는 역할을 합니다. UIKit은 first Responder에게 발생한 이벤트를 전달하고, UIResponder는 해당 이벤트를 자신이 처리할 수 있다면 처리하고, 처리할 수 없다면 next 프로퍼티에 할당된 다음 Responder에게 전달합니다.
+> UIResponder는 `모든 UIView의 상위 객체`이면서 이벤트를 받고 처리하거나 다른 UIResponder 객체에게 전달하는 역할을 합니다. UIKit은 `first Responder`에게 발생한 이벤트를 전달하고, UIResponder는 해당 이벤트를 자신이 처리할 수 있다면 처리하고, 처리할 수 없다면 `next 프로퍼티`에 할당된 다음 Responder에게 전달합니다.
 
 ## UIResponder Chain을 설명해주세요.
 
-> UIKit이 모든 UIResponder를 엮어서 관리하는 체인입니다. 각 리스폰더는 next프로퍼티로 자신의 다음 리스폰더를 참조하고 있습니다.
+> UIKit이 `모든 UIResponder를 엮어서 관리하는 체인`입니다. 각 리스폰더는 `next프로퍼티`로 자신의 다음 리스폰더를 참조하고 있습니다.
 
 ## 그럼 기본적으로 클래스별로 이벤트가 전달되는 순서가 어떻게 될까요?
 
-> UIView, UIViewController, UIWindow, UIApplication, UIApplicationDelegate 순으로 이벤트가 전달됩니다. 만약 어떤 뷰나 뷰 컨트롤러가 상위뷰에 속해져있는 뷰라면 해당 뷰나 뷰 컨트롤러에 이벤트를 전달합니다.
+> `UIView, UIViewController, UIWindow, UIApplication, UIApplicationDelegate` 순으로 이벤트가 전달됩니다. 만약 어떤 뷰나 뷰 컨트롤러가 상위뷰에 속해져있는 뷰라면 해당 뷰나 뷰 컨트롤러에 이벤트를 전달합니다.
 
 ## Responder Chain을 임의로 변경하려면 어떻게 해야할까요?
 
-> 특정한 뷰의 next프로퍼티를 오버라이딩해서 다음 리스폰더에 지정할 수 있고, becomeFirstResponder 메서드를 사용해서 특정한 뷰를 firstResponder로 만들 수 있습니다. 이때는 이벤트가 firstResponder에게 전달됩니다.
+> 특정한 뷰의 next프로퍼티를 오버라이딩해서 다음 리스폰더에 지정할 수 있고, `becomeFirstResponder` 메서드를 사용해서 특정한 뷰를 firstResponder로 만들 수 있습니다. 이때는 이벤트가 firstResponder에게 전달됩니다.
 
 ## 그럼 이벤트는 어떤 형태로 전달되는지? 터치 이벤트는 다른게 있는지?
 
-> 이벤트는 UIEvent 객체로 전달됩니다. 터치 이벤트는 UITouch 객체로 관리되고, UIEvent 객체를 통해 접근할 수 있습니다. 터치 이벤트 객체는 터치된 시간, 영역, 강도, 위치 등의 정보를 포함하고 있습니다.
+> 이벤트는 `UIEvent` 객체로 전달됩니다. 터치 이벤트는 `UITouch` 객체로 관리되고, UIEvent 객체를 통해 접근할 수 있습니다. 터치 이벤트 객체는 터치된 시간, 영역, 강도, 위치 등의 정보를 포함하고 있습니다.
 
 ## UIControl에서 이벤트가 발생하면 해당 이벤트를 처리하는 과정을 설명해보세요.
 
-> UIControl은 addTarget 메서드로 이벤트 핸들러를 정의할 수 있습니다. 이때 target과 action을 인자로 전달할 수 있습니다. target은 어떤 객체이던지 들어갈 수 있지만, 일반적으로 이벤트를 처리할 뷰 컨트롤러를 지정합니다. 만약 target에 nil이 들어가면, UIControl은 발생한 이벤트에 대한 처리를 구현하고 있는 리스폰더를 리스폰더 체인을 통해 찾아냅니다.
+> UIControl은 `addTarget` 메서드로 이벤트 핸들러를 정의할 수 있습니다. 이때 `target`과 `action`을 인자로 전달할 수 있습니다. target은 어떤 객체이던지 들어갈 수 있지만, 일반적으로 이벤트를 처리할 뷰 컨트롤러를 지정합니다. 만약 target에 nil이 들어가면, UIControl은 이벤트 핸들러를 구현하고 있는 `리스폰더를 리스폰더 체인을 통해` 찾아냅니다.
 >
-> action에는 이벤트를 처리할 메서드를 지정합니다. 이벤트가 발생하면, UIControl 객체는 지정된 메서드를 호출하고 UIApplication이 호출 메시지를 받아 리스폰더 체인을 통해 해당 메서드를 찾고 이벤트를 전달합니다.
+> action에는 `이벤트를 처리할 메서드`를 지정합니다. 이벤트가 발생하면, UIControl 객체는 지정된 메서드를 호출하고 UIApplication이 호출 메시지를 받아 `리스폰더 체인을 통해 해당 메서드를 찾고 이벤트를 전달`합니다.
 
 ## UI 작업을 메인스레드에서 처리해야하는 이유는 무엇인가요?
 
-> UI 업데이트는 즉각적으로 이루어지는 것이 아니라, 런루프의 한 사이클이 끝날 때 업데이트 됩니다. 만약 여러 스레드에서 UI작업을 처리하게 되면, 각각 다른 런루프에서 처리하게 되고, 화면에 뷰가 그려지는 시점이 서로 달라지거나 레이아웃에 대한 계산이 의도했던 것과 다르게 될 수 있습니다.
+> UI 업데이트는 즉각적으로 이루어지는 것이 아니라, `런루프의 한 사이클이 끝날 때` 업데이트 됩니다. 만약 여러 스레드에서 UI작업을 처리하게 되면, 각각 다른 `런루프`에서 처리하게 되고, 화면에 뷰가 그려지는 시점이 서로 달라지거나 레이아웃에 대한 계산이 의도했던 것과 다르게 될 수 있습니다. 그렇기 때문에 UI작업은 항상 메인 스레드에서만 처리되어야합니다.
 
 ## UIViewController의 상위 클래스들을 모두 말하고 설명해보세요.
 
-> UIViewController는 UIResponder를 상속하고, UIResponder는 NSObject를 상속합니다.
+> UIViewController는 `UIResponder`를 상속하고, UIResponder는 `NSObject`를 상속합니다.
 >
-> UIResponder는 이벤트를 받고 리스폰더 체인을 구성할 수 있게합니다. NSObject는 Objective-C의 루트 클래스로 NSObject를 상속해 Objective-C 런타임에 대한 인터페이스나 기능을 사용할 수 있도록 합니다.
+> UIResponder는 이벤트를 받고 `리스폰더 체인`을 구성할 수 있게합니다. NSObject는 `Objective-C 런타임`에 대한 인터페이스나 기능을 사용할 수 있도록 합니다.
 
 ## 앱이 처음 시작되면 어떤 일들이 일어나는지 설명해주세요.
 
-- main함수가 실행됩니다.
-- main함수는 UIApplicationMain함수를 호출합니다.
-- UIApplicationMain함수는 UIApplication 인스턴스를 생성합니다.
-- 그리고 Info.plist에서 필요한 데이터를 로드합니다.
-- UIApplication은 AppDelegate 인스턴스를 생성하고, UIApplication을 위임합니다.
-- UIApplication은 RunLoop를 생성합니다.
-- 준비가 완료되면, AppDelegate의 didFinishLaunchingWithOptions를 호출합니다.
-- 세션에 대한 설정이 완료되면, SceneDelegate의 willConnectToSession이 호출됩니다.
+- `main`함수가 실행됩니다.
+- main함수는 `UIApplicationMain`함수를 호출합니다.
+- UIApplicationMain함수는 `UIApplication` 인스턴스를 생성합니다.
+- 그리고 `Info.plist`에서 필요한 데이터를 로드합니다.
+- UIApplication은 `AppDelegate` 인스턴스를 생성하고, UIApplication을 `위임`합니다.
+- UIApplication은 `RunLoop`를 생성합니다.
+- 준비가 완료되면, AppDelegate의 `didFinishLaunchingWithOptions` 를호출합니다.
+- 세션에 대한 설정이 완료되면, `SceneDelegate의 willConnectToSession`이 호출됩니다.
 
-![Alt text](image.png)
+<img src="https://user-images.githubusercontent.com/46087477/150353961-db9c84a8-2eb3-4d42-b108-690943f718de.png"/>
 
 # Autolayout
 
